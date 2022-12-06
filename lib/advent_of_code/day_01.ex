@@ -16,12 +16,14 @@ defmodule AdventOfCode.Day01 do
     args
     |> String.split("\n")
     |> Enum.reduce([[]], fn
-      "", acc -> [[] | acc]
+      "", acc ->
+        [[] | acc]
+
       elem, [head | tail] ->
         [[String.to_integer(elem) | head] | tail]
     end)
-    |> Enum.reject(&(Enum.empty?(&1)))
-    |> Enum.map(&(Enum.sum(&1)))
+    |> Enum.reject(&Enum.empty?(&1))
+    |> Enum.map(&Enum.sum(&1))
     |> Enum.sort()
   end
 end

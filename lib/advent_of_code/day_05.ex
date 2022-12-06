@@ -22,9 +22,10 @@ defmodule AdventOfCode.Day05 do
   end
 
   defp parse_initial_stacks(initial_stacks) do
-    all_rows = initial_stacks
-    |> String.split("\n")
-    |> Enum.drop(-1)
+    all_rows =
+      initial_stacks
+      |> String.split("\n")
+      |> Enum.drop(-1)
 
     length = String.length(List.last(all_rows))
 
@@ -40,10 +41,10 @@ defmodule AdventOfCode.Day05 do
       end)
     end)
     |> Enum.zip()
-    |> Enum.map(fn(stack) ->
+    |> Enum.map(fn stack ->
       stack
       |> Tuple.to_list()
-      |> Enum.reject(& &1 == [])
+      |> Enum.reject(&(&1 == []))
     end)
   end
 
@@ -60,7 +61,6 @@ defmodule AdventOfCode.Day05 do
         to: parse_integer(parsed_row, 5) - 1
       }
     end)
-
   end
 
   defp parse_integer(row, n) do
@@ -103,7 +103,7 @@ defmodule AdventOfCode.Day05 do
 
   defp select_last(stacks) do
     stacks
-    |> Enum.map(&(List.first(&1)))
+    |> Enum.map(&List.first(&1))
     |> Enum.join()
   end
 end

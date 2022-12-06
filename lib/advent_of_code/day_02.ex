@@ -27,12 +27,14 @@ defmodule AdventOfCode.Day02 do
   end
 
   defp parse_part_1([opp, mine]), do: [parse(opp), parse(mine)]
+
   defp parse_part_2([opp, mine]) do
     opp_parsed = parse(opp)
 
-    mine_parsed = mine
-    |> parse_result()
-    |> determine_mine(opp_parsed)
+    mine_parsed =
+      mine
+      |> parse_result()
+      |> determine_mine(opp_parsed)
 
     [opp_parsed, mine_parsed]
   end

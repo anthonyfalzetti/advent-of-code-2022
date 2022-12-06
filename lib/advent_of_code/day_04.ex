@@ -15,7 +15,7 @@ defmodule AdventOfCode.Day04 do
     input
     |> String.split("\n")
     |> Enum.reject(&(&1 == ""))
-    |> Enum.map(fn(row) ->
+    |> Enum.map(fn row ->
       row
       |> String.split(",")
       |> Enum.map(&convert_to_ranges/1)
@@ -23,22 +23,23 @@ defmodule AdventOfCode.Day04 do
   end
 
   defp convert_to_ranges(string) do
-    [start_elem, end_elem] = string
-    |> String.split("-")
-    |> Enum.map(&(String.to_integer/1))
+    [start_elem, end_elem] =
+      string
+      |> String.split("-")
+      |> Enum.map(&String.to_integer/1)
 
     MapSet.new(start_elem..end_elem)
   end
 
   defp count_subsets(list) do
     list
-    |> Enum.filter(&(is_subset/1))
+    |> Enum.filter(&is_subset/1)
     |> Enum.count()
   end
 
   defp count_overlap(list) do
     list
-    |> Enum.reject(&(any_overlap/1))
+    |> Enum.reject(&any_overlap/1)
     |> Enum.count()
   end
 
